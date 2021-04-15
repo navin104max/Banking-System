@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BNBank</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/customer.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&family=Baloo+Da+2&display=swap" rel="stylesheet">
+  </head>
+  
+
+  <body>
+    <!--Navbar Starts Here-->
+   <nav id="navbar">
+        <div id="logo">
+            <img src="./image/logo.jfif" alt="">
+        </div>
+
+        <ul>
+            <li class="item"><a href="index.html">Home </a></li>
+            <li class="item"><a href="customers.html">Customers </a></li>
+            <li class="item"><a href="about.html">About us </a></li>
+            <li class="item"><a href="transfer.html">Transfer Money </a></li>
+            
+ 
+        </ul>
+    </nav>
+    <!-- navbar ends here  -->
+
+    <div class="my-info text-center">
+      <h2>WELCOME TO B.N. BANK</h2>
+      <h4>Net Bank Balance:Rs <span id="myAccountBalance">500000</span></h4>
+
+      <button
+        class="btn btn-primary btn-info btn-lg"
+        data-toggle="modal"
+        data-target="#sendMoney"
+      >
+        Send Money
+      </button>
+      <a
+        class="btn btn-primary btn-info btn-lg"
+        href=""
+        data-toggle="modal"
+        data-target="#transactionHistory"
+        >Customers History</a
+      >
+    </div>
+
+    <!-- Modal send money -->
+    <div
+      class="modal fade"
+      id="sendMoney"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Send Money</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  id="enterName"
+                  class="form-control"
+                  placeholder="Recipient's username"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2"
+                    >@email.com</span
+                  >
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Rs</span>
+                </div>
+                <input
+                  type="text"
+                  id="enterAmount"
+                  class="form-control"
+                  placeholder=" Enter Amount"
+                  aria-label="Amount (to the nearest rupee)"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text">.00</span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              onclick="sendMoney()"
+              class="btn btn-success"
+              data-dismiss="modal"
+            >
+              Send Money
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal send money ends here-->
+
+    <!-- Modal transaction History-->
+    <div
+      class="modal fade"
+      id="transactionHistory"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Transaction History
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ol id="transaction-history-body"></ol>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- table  -->
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr class="table-danger">
+              <th scope="col">S.No</th>
+              <th scope="col">Name</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Bank Balance(in Rs)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-light">
+              <td scope="row">1</td>
+              <td>Nishant Mishra</td>
+              <td>nishant@email.com</td>
+              <td>
+                <p id="nishantBankBalance">100000</p>
+              </td>
+            </tr>
+            <tr class="table-info">
+              <td scope="row">2</td>
+              <td>Tejeswini Patel</td>
+              <td>teju@email.com</td>
+              <td>
+                <p id="tejusBankBalance">25000</p>
+              </td>
+            </tr>
+            <tr class="table-light">
+              <td scope="row">3</td>
+              <td>Ayush Sharma</td>
+              <td>ayush@email.com</td>
+              <td>
+                <p id="ayushBankBalance">15000</p>
+              </td>
+            </tr>
+            <tr class="table-info">
+              <td scope="row">4</td>
+              <td>Sandeep Yadav</td>
+              <td>sandeep@email.com</td>
+              <td>
+                <p id="sandyBankBalance">12000</p>
+              </td>
+            </tr>
+
+
+            <tr class="table-light">
+              <td scope="row">5</td>
+              <td>Pooja Dubey</td>
+              <td>pooja@email.com</td>
+              <td>
+                <p id="poojaBankBalance">12000</p>
+              </td>
+            </tr>
+
+            <tr class="table-info">
+              <td scope="row">6</td>
+              <td>Avinash jain</td>
+              <td>avinash@email.com</td>
+              <td>
+                <p id="avinashBankBalance">5000</p>
+              </td>
+            </tr>
+            
+            <tr class="table-light">
+              <td>7</td>
+              <td>Navneet Singh</td>
+              <td>navneet@email.com</td>
+              <td>
+                <p id="navneetBankBalance">5600</p>
+              </td>
+            </tr>
+            <tr class="table-info">
+              <td scope="row">8</td>
+              <td>Abhishek Kumar</td>
+              <td>abhishek@email.com</td>
+              <td>
+                <p id="abhishekBankBalance">30000</p>
+              </td>
+            </tr>
+            <tr class="table-light">
+              <td scope="row">9</td>
+              <td>Arushi KV</td>
+              <td>arushi@email.com</td>
+              <td>
+                <p id="arushiBankBalance">8000</p>
+              </td>
+            </tr>
+            <tr class="table-info">
+              <td scope="row">10</td>
+              <td>Bhumi DN</td>
+              <td>bhumi@email.com</td>
+              <td>
+                <p id="bhumiBankBalance">1300</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Footer -->
+
+    <script src="assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
+
+    <footer>
+        <div class="center">
+            Copyright &copy; www.BNB.com #GRIPAPRIL21. All rights Reserved!
+        </div>
+    </footer>
+  </body>
+</html>
